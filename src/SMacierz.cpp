@@ -10,7 +10,7 @@
  *  niz dwie linijki.
  *  Mniejsze metody mozna definiwac w ciele klasy.*/
 
-
+/* Konstruktory*/
 template <class TYP, int Rozmiar>
 SMacierz<TYP, Rozmiar>::SMacierz() {
     for (int i = 0; i < ROZMIAR; i++) {
@@ -27,7 +27,7 @@ SMacierz<TYP, Rozmiar>::SMacierz(SWektor<TYP, Rozmiar> Wie1, SWektor<TYP, Rozmia
 }
 
 /*****************************************************************/
-
+/* Operatory []*/
 template <class TYP, int Rozmiar>
 SWektor<TYP, Rozmiar> & SMacierz<TYP, Rozmiar>::operator[] (int indeks) {
     if (indeks < 0 || indeks >= ROZMIAR) {
@@ -45,9 +45,6 @@ const SWektor<TYP, Rozmiar> & SMacierz<TYP, Rozmiar>::operator[] (int indeks) co
     return SMacierz<TYP,Rozmiar>::tab[indeks];
 }
 /******************************************************************/
-
-
-/*****************************************************************/
 /* Tworzy kopie macierzy*/
 template <class TYP, int Rozmiar>
 SMacierz<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::skopiuj() const {
@@ -92,10 +89,11 @@ SWektor<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::operator*(const SWektor<TYP, Rozmi
 /* Oblicza wyznacznik macierzy, zwraca wartosc double - wyznacznik macierzy*/
 
 template <class TYP, int Rozmiar>
-TYP SMacierz<TYP, Rozmiar>::wyznacznik() const {
+double SMacierz<TYP, Rozmiar>::wyznacznik() const {
     SMacierz<TYP, Rozmiar>  tmp;
     tmp = SMacierz<TYP, Rozmiar>::skopiuj();
-    LZespolona det(1,0);
+
+    double det = 1;
     int przestW = 0;
 
     for (int i = 0; i < ROZMIAR; i++) {
@@ -113,21 +111,15 @@ TYP SMacierz<TYP, Rozmiar>::wyznacznik() const {
             }
         }
     }
+    if (przestW % 2) det * -1;
+
     for(int i = 0; i < ROZMIAR; i++) {
-        det = tmp.tab[i][i] * det;
+        det = det * tmp.tab[i][i];
     }
 
-    if (przestW % 2)
-        return det * -1;
-    else
-        return det;
+    return det;
 }
-
-
-
-
-
-
+/*****************************************************************/
 template <class TYP, int Rozmiar>
 std::istream & operator >> (std::istream &Strm, SMacierz<TYP, Rozmiar> &Mac) {
     SWektor<TYP, Rozmiar> Wie1, Wie2, Wie3;
@@ -135,16 +127,19 @@ std::istream & operator >> (std::istream &Strm, SMacierz<TYP, Rozmiar> &Mac) {
     Strm >> Wie2;
     Strm >> Wie3;
 
-/*    SMacierz<TYP, ROZMIAR> tmp( Wie1, Wie2, Wie3);
-     Mac = tmp.transpozycja();*/
+    SMacierz<TYP, ROZMIAR> tmp( Wie1, Wie2, Wie3);
+     Mac = tmp.transpozycja();
 
     return Strm;
 }
 template <class TYP, int Rozmiar>
 std::ostream& operator << (std::ostream &Strm, const SMacierz<TYP, Rozmiar> & Mac) {
-    
-/*    for (int i = 0; i < ROZMIAR; i++) {
-        Strm << Mac[i] << std::endl;
-    }*/
+
+    SMacierz<TYP, ROZMIAR> tmp;
+    tmp = Mac;
+
+    for (int i = 0; i < ROZMIAR; i++) {
+        Strm << tmp.transpozycja()[i] << std::endl;
+    }
     return Strm;
 }

@@ -35,25 +35,33 @@ std::ostream & operator << (std::ostream & Strm, const LZespolona &out) {
     return Strm;
 }
 
-LZespolona & LZespolona::operator = (const LZespolona &Skl2) {
-    re = Skl2.re;
-    im = Skl2.im;
-}
-
-
-LZespolona & LZespolona::operator = (double podstawiana) {
-    re = podstawiana;
+LZespolona & LZespolona::operator = (double _re) {
+    re = _re;
     im = 0;
+    return *this;
 }
+double & LZespolona::operator=(LZespolona L) {
+    return L.re;
+}
+
 
 LZespolona::LZespolona() {
     re = 0;
     im = 0;
 }
+LZespolona::LZespolona(double _re) {
+    re = _re;
+    im = 0;
+}
+
 
 LZespolona::LZespolona(double _re, double _im) {
     re = _re;
     im = _im;
+}
+LZespolona::LZespolona(LZespolona const &L2) {
+    re = L2.re;
+    im = L2.im;
 }
 
 /*!
@@ -145,6 +153,13 @@ LZespolona  LZespolona::operator * (double skl2) {
     Wynik = *this * Skl2;
     return Wynik;
 }
+double operator * (double skl1, LZespolona  Skl2) {
+    double wynik;
+    wynik = skl1 * Skl2.re;
+    return wynik;
+}
+
+
 
 /* Iloraz LZespolonej przez double*/
 LZespolona  operator / (LZespolona  Skl1,  double skl2) {

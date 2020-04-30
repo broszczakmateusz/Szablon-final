@@ -7,6 +7,7 @@
 
 #include "rozmiar.h"
 #include "SWektor.h"
+#include "LZespolona.hh"
 #include <iostream>
 /*
 *  Klasa modeluje pojecie macierzy kwadratowej o wymiarach ROZMIAR x ROZMIAR.
@@ -14,9 +15,9 @@
 
 template <class TYP, int Rozmiar>
 class SMacierz {
-
-public:
     SWektor<TYP,Rozmiar> tab[Rozmiar];
+public:
+
     SMacierz();
     SMacierz(SWektor<TYP,Rozmiar> Wie1, SWektor<TYP,Rozmiar> Wie2, SWektor<TYP,Rozmiar> Wie3);
 
@@ -28,7 +29,7 @@ public:
     SMacierz<TYP,Rozmiar> skopiuj() const;
     SMacierz<TYP,Rozmiar>  transpozycja();
     SWektor<TYP,Rozmiar>  operator * (const SWektor<TYP,Rozmiar> & W) const;
-    TYP wyznacznik() const;
+    double wyznacznik() const;
 };
 
 /*
