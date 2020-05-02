@@ -9,4 +9,3 @@ template std::ostream& operator << (std::ostream & Strm, const SUklad<double, RO
 template class SUklad<LZespolona, ROZMIAR>;
 template std::istream& operator >> (std::istream & Strm, SUklad<LZespolona, ROZMIAR> &UklRown);
 template std::ostream& operator << (std::ostream & Strm, const SUklad<LZespolona, ROZMIAR> & UklRown);
-

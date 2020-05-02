@@ -20,10 +20,11 @@ struct  LZespolona {
   LZespolona(LZespolona const &L2);
   explicit LZespolona(double _re);
 
-  LZespolona &  operator = ( double _re);
+    LZespolona &  operator = ( double _re);
     LZespolona  operator * (double skl2);
     /*  do konwersji przy wyznaczniku  det = tmp.tab[i][i] * det;*/
-    double & operator = (LZespolona L);
+    //double & operator = (LZespolona L);
+    LZespolona & operator = (LZespolona L);
 };
 
 //LZespolona Utworz (double, double);

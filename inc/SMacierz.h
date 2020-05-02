@@ -15,11 +15,12 @@
 
 template <class TYP, int Rozmiar>
 class SMacierz {
-    SWektor<TYP,Rozmiar> tab[Rozmiar];
+    SWektor<TYP,ROZMIAR> tab[Rozmiar];
 public:
 
     SMacierz();
     SMacierz(SWektor<TYP,Rozmiar> Wie1, SWektor<TYP,Rozmiar> Wie2, SWektor<TYP,Rozmiar> Wie3);
+    explicit SMacierz(SWektor<TYP,Rozmiar> Wiersze[ROZMIAR]);
 
     const SWektor<TYP,Rozmiar> & operator[] (int indeks) const;
     SWektor<TYP,Rozmiar> & operator[] (int indeks);

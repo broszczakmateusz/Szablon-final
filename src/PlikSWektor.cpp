@@ -17,3 +17,12 @@ template std::istream& operator >> (std::istream & Strm, SWektor<LZespolona, ROZ
 template std::ostream& operator << (std::ostream & Strm, const SWektor<LZespolona, ROZMIAR> & Wek);
 
 //template <> LZespolona SWektor<LZespolona, ROZMIAR>::dlugosc() const;
+
+/*
+template<> SWektor<LZespolona, ROZMIAR> {
+    for (int i=0; i < ROZMIAR; i++) {
+        dane[i](wspolrzedne[i]);
+        std::cout <<"konstruktor wspolrzedne[i]"<< wspolrzedne[i] << std::endl;
+        std::cout <<"konstruktor dane[i]"<< dane[i] << std::endl;
+    }
+}*/

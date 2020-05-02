@@ -40,8 +40,16 @@ LZespolona & LZespolona::operator = (double _re) {
     im = 0;
     return *this;
 }
-double & LZespolona::operator=(LZespolona L) {
+
+/*double & LZespolona::operator=(LZespolona L) {
     return L.re;
+}*/
+
+/* Konstruktor kopiujacy nie dziala przy wczytaniu wektora, wiec uzyam tego przeciazenia*/
+LZespolona & LZespolona::operator=(LZespolona L) {
+    re= L.re;
+    im = L.im;
+    return  *this;
 }
 
 

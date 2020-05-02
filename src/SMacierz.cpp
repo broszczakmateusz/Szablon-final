@@ -26,6 +26,14 @@ SMacierz<TYP, Rozmiar>::SMacierz(SWektor<TYP, Rozmiar> Wie1, SWektor<TYP, Rozmia
     SMacierz<TYP, Rozmiar>::tab[2] = Wie3;
 }
 
+template <class TYP, int Rozmiar>
+SMacierz<TYP, Rozmiar>::SMacierz(SWektor<TYP, Rozmiar> Wiersze[ROZMIAR]) {
+
+    for (int i = 0; i < ROZMIAR; i++) {
+        SMacierz<TYP, Rozmiar>::tab[i] = Wiersze[i];
+    }
+
+}
 /*****************************************************************/
 /* Operatory []*/
 template <class TYP, int Rozmiar>
@@ -116,18 +124,18 @@ double SMacierz<TYP, Rozmiar>::wyznacznik() const {
     for(int i = 0; i < ROZMIAR; i++) {
         det = det * tmp.tab[i][i];
     }
-
     return det;
 }
+
 /*****************************************************************/
 template <class TYP, int Rozmiar>
 std::istream & operator >> (std::istream &Strm, SMacierz<TYP, Rozmiar> &Mac) {
-    SWektor<TYP, Rozmiar> Wie1, Wie2, Wie3;
-    Strm >> Wie1;
-    Strm >> Wie2;
-    Strm >> Wie3;
-
-    SMacierz<TYP, ROZMIAR> tmp( Wie1, Wie2, Wie3);
+    SWektor<TYP, Rozmiar> Wiersze[ROZMIAR];
+    for(int i = 0; i < ROZMIAR; i++){
+        Strm >> Wiersze[i];
+        //std::cout << std::endl<<Wiersze[i]<< std::endl;
+    }
+    SMacierz<TYP, ROZMIAR> tmp( Wiersze);
      Mac = tmp.transpozycja();
 
     return Strm;

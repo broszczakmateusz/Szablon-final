@@ -4,7 +4,6 @@
 #include "rozmiar.h"
 #include <iostream>
 #include <cmath>
-#include "Wektor.hh"
 #include "LZespolona.hh"
 
 

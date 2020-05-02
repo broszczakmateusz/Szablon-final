@@ -54,7 +54,7 @@ SWektor<TYP,Rozmiar> SUklad<TYP,Rozmiar>::Oblicz() const {
 
     for (int i = 0; i < ROZMIAR; i++) {
         for (int j = i + 1; j < ROZMIAR; j++) {
-            for (int k = 1; k < ROZMIAR; k++) {
+            for (int k = i + 1; k < ROZMIAR; k++) {
                 if (tmpA[i][i] == 0) {
                     if (tmpA[k][i] != 0) {
                         std::swap(tmpA[i], tmpA[k]);
@@ -71,19 +71,20 @@ SWektor<TYP,Rozmiar> SUklad<TYP,Rozmiar>::Oblicz() const {
             }
         }
     }
-
     SWektor<TYP,Rozmiar> Wynik;
     Wynik[ROZMIAR - 1] = tmpb[ROZMIAR - 1] / tmpA[ROZMIAR - 1][ROZMIAR - 1];
 
-    for (int i = ROZMIAR - 2; i >= 0; i--) {
-        for (int j = ROZMIAR - 1; j >= i + 1; j--) {
-            if (j == ROZMIAR - 1 ) {
-                Wynik[i] = (tmpb[i] - Wynik[j] * tmpA[i][j] ) / tmpA[i][i];
-            } else {
-                Wynik[i] = (tmpb[i] - (Wynik[j] * tmpA[i][j] + Wynik[j + 1] * tmpA[i][j + 1])) / tmpA[i][i];
+    for (int i = ROZMIAR - 1; i >= 0; i--) {
+        if (i != ROZMIAR - 1) {
+            Wynik[i] = tmpb[i];
+
+            for (int j = ROZMIAR - 1 ; j >= i + 1 ; j--) {
+                Wynik[i] = (Wynik[i] - (tmpA[i][j] * Wynik[j]));
             }
+            Wynik[i] = Wynik[i] / tmpA[i][i];
         }
     }
+
     return Wynik;
 }
 

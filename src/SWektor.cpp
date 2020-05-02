@@ -10,20 +10,20 @@ SWektor<TYP, Rozmiar>::SWektor(TYP x, TYP y, TYP z) {
     dane[2] = z;
 }
 template <class TYP, int Rozmiar>
-SWektor<TYP, Rozmiar>::SWektor(TYP wsporzedne[ROZMIAR]) {
-    for (int i=0; i < ROZMIAR ;i++) {
-        dane[i] = wsporzedne[i];
+SWektor<TYP, Rozmiar>::SWektor(TYP wspolrzedne[ROZMIAR]) {
+    for (int i=0; i < ROZMIAR; i++) {
+        dane[i] = wspolrzedne[i];
     }
 }
 /*****************************************************************/
 /* Wczytuje 3 wartosci double, tworzy z nich wektor.*/
 template <class TYP, int Rozmiar>
 std::istream& operator >> (std::istream & Strm, SWektor<TYP, Rozmiar> &Wek){
-    TYP wartosc[ROZMIAR];
+    TYP wspolrzedne[ROZMIAR];
     for (int i = 0; i < ROZMIAR; i++){
-        Strm >> wartosc[i];
+        Strm >> wspolrzedne[i];
     }
-    SWektor<TYP, Rozmiar> tmp(wartosc);
+    SWektor<TYP, Rozmiar> tmp(wspolrzedne);
     Wek = tmp;
 
     return Strm;
