@@ -10,7 +10,7 @@
 #include "LZespolona.hh"
 #include <iostream>
 /*
-*  Klasa modeluje pojecie macierzy kwadratowej o wymiarach ROZMIAR x ROZMIAR.
+*  Klasa modeluje pojecie szablonu macierzy kwadratowej o wymiarach ROZMIAR x ROZMIAR.
 */
 
 template <class TYP, int Rozmiar>
@@ -19,7 +19,6 @@ class SMacierz {
 public:
 
     SMacierz();
-    SMacierz(SWektor<TYP,Rozmiar> Wie1, SWektor<TYP,Rozmiar> Wie2, SWektor<TYP,Rozmiar> Wie3);
     explicit SMacierz(SWektor<TYP,Rozmiar> Wiersze[ROZMIAR]);
 
     const SWektor<TYP,Rozmiar> & operator[] (int indeks) const;

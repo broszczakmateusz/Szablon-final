@@ -1,7 +1,3 @@
-//
-// Created by mati on 30.04.2020.
-//
-
 #include "SUklad.h"
 
 template <class TYP, int Rozmiar>
@@ -24,7 +20,7 @@ std::ostream &operator<<(std::ostream &Strm, const SUklad<TYP,Rozmiar> &UklRown)
     return Strm;
 }
 
-/*###########################################################*/
+/*****************************************************************/
 template <class TYP, int Rozmiar>
 const SMacierz<TYP,Rozmiar> &SUklad<TYP,Rozmiar>::get_A() const {
     return A;
@@ -42,9 +38,8 @@ void SUklad<TYP,Rozmiar>::set_b(const SWektor<TYP,Rozmiar> &bb) {
     b=bb;
 }
 
-/*###########################################################*/
-/* Rozwiazuje uklad rownan liniowych 3x3. (Dla innego rozmiaru nie bedzie daialac poprawnie)
- * Transponuje wejsciowa macierz i dziala na macierzy tranposnowanej do wejsciowej.
+/*****************************************************************/
+/* Rozwiazuje uklad rownan liniowych liczb rzeczywistych lub zespolonych.
  * Zwraca wektor rozwiazan ukladu.
 */
 template <class TYP, int Rozmiar>
@@ -52,6 +47,7 @@ SWektor<TYP,Rozmiar> SUklad<TYP,Rozmiar>::Oblicz() const {
     SMacierz<TYP,Rozmiar>  tmpA = get_A();
     SWektor<TYP,Rozmiar> tmpb = get_b();
 
+    /* Doprowadzenie macierzy do macierzy trojkatnej*/
     for (int i = 0; i < ROZMIAR; i++) {
         for (int j = i + 1; j < ROZMIAR; j++) {
             for (int k = i + 1; k < ROZMIAR; k++) {
@@ -71,8 +67,10 @@ SWektor<TYP,Rozmiar> SUklad<TYP,Rozmiar>::Oblicz() const {
             }
         }
     }
+
+    /* Obliczenie niewiadomych*/
     SWektor<TYP,Rozmiar> Wynik;
-    Wynik[ROZMIAR - 1] = tmpb[ROZMIAR - 1] / tmpA[ROZMIAR - 1][ROZMIAR - 1];
+    Wynik[ROZMIAR - 1] = tmpb[ROZMIAR - 1] / tmpA[ROZMIAR - 1][ROZMIAR - 1]; /* Ostatnia niewiadoma*/
 
     for (int i = ROZMIAR - 1; i >= 0; i--) {
         if (i != ROZMIAR - 1) {

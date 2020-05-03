@@ -1,29 +1,11 @@
-//
-// Created by mateusz on 24.04.2020.
-//
-
 #include "SMacierz.h"
 #include <SWektor.h>
-
-/* *  Tutaj nalezy zdefiniowac odpowiednie metody
- *  klasy Macierz, ktore zawieraja wiecej kodu
- *  niz dwie linijki.
- *  Mniejsze metody mozna definiwac w ciele klasy.*/
-
 /* Konstruktory*/
 template <class TYP, int Rozmiar>
 SMacierz<TYP, Rozmiar>::SMacierz() {
     for (int i = 0; i < ROZMIAR; i++) {
         SMacierz<TYP, Rozmiar>::tab[i] = SWektor<TYP, ROZMIAR>();
     }
-}
-
-template <class TYP, int Rozmiar>
-SMacierz<TYP, Rozmiar>::SMacierz(SWektor<TYP, Rozmiar> Wie1, SWektor<TYP, Rozmiar> Wie2, SWektor<TYP, Rozmiar> Wie3) {
-
-    SMacierz<TYP, Rozmiar>::tab[0] = Wie1;
-    SMacierz<TYP, Rozmiar>::tab[1] = Wie2;
-    SMacierz<TYP, Rozmiar>::tab[2] = Wie3;
 }
 
 template <class TYP, int Rozmiar>
@@ -65,7 +47,6 @@ SMacierz<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::skopiuj() const {
 }
 
 /* Transponuje macierz*/
-
 template <class TYP, int Rozmiar>
 SMacierz<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::transpozycja() {
     SMacierz<TYP, Rozmiar> Transponowana, tmp;
@@ -81,7 +62,6 @@ SMacierz<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::transpozycja() {
 }
 
 /* Iloczyn Macierzy i wektora. Zwraca wektor */
-
 template <class TYP, int Rozmiar>
 SWektor<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::operator*(const SWektor<TYP, Rozmiar> &W) const {
     SWektor<TYP, Rozmiar> Wynikowy;
@@ -95,7 +75,6 @@ SWektor<TYP, Rozmiar> SMacierz<TYP, Rozmiar>::operator*(const SWektor<TYP, Rozmi
 }
 
 /* Oblicza wyznacznik macierzy, zwraca wartosc double - wyznacznik macierzy*/
-
 template <class TYP, int Rozmiar>
 double SMacierz<TYP, Rozmiar>::wyznacznik() const {
     SMacierz<TYP, Rozmiar>  tmp;
@@ -128,6 +107,7 @@ double SMacierz<TYP, Rozmiar>::wyznacznik() const {
 }
 
 /*****************************************************************/
+/* Operatory << >>*/
 template <class TYP, int Rozmiar>
 std::istream & operator >> (std::istream &Strm, SMacierz<TYP, Rozmiar> &Mac) {
     SWektor<TYP, Rozmiar> Wiersze[ROZMIAR];

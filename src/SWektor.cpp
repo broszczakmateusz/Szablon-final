@@ -1,7 +1,6 @@
 #include "SWektor.h"
 
 /* Konstruktory*/
-
 template<class TYP, int Rozmiar>
 SWektor<TYP, Rozmiar>::SWektor(TYP x, TYP y, TYP z) {
 
@@ -16,7 +15,7 @@ SWektor<TYP, Rozmiar>::SWektor(TYP wspolrzedne[ROZMIAR]) {
     }
 }
 /*****************************************************************/
-/* Wczytuje 3 wartosci double, tworzy z nich wektor.*/
+/* Wczytuje tablice wartowsci double lub liczb zespolonych, tworzy z nich wektor.*/
 template <class TYP, int Rozmiar>
 std::istream& operator >> (std::istream & Strm, SWektor<TYP, Rozmiar> &Wek){
     TYP wspolrzedne[ROZMIAR];

@@ -8,7 +8,7 @@
 
 
 /*
- *  Klasa modeluje pojecie wektora o wymiarze ROZMIAR;
+ *  Klasa modeluje pojecie szabloonu wektora o wymiarze ROZMIAR;
  */
 template <class TYP, int Rozmiar>
 class SWektor {
@@ -18,7 +18,7 @@ class SWektor {
 public:
     SWektor() { for (TYP &i: dane) i = 0; }
     SWektor(TYP x, TYP y, TYP z);
-    SWektor(TYP wspolrzedne[ROZMIAR]); //konstruktor od kolekcji
+    explicit SWektor(TYP wspolrzedne[ROZMIAR]); //konstruktor od kolekcji
 
     const TYP & operator[] (int indeks) const;
     TYP & operator[] (int indeks);
@@ -32,7 +32,7 @@ public:
 
 
 };
-/* Wczytuje 3 wartosci double, tworzy z nich wektor.*/
+/* Wczytuje tablice wartowsci double lub liczb zespolonych, tworzy z nich wektor.*/
 template <class TYP, int Rozmiar>
 std::istream& operator >> (std::istream & Strm, SWektor<TYP, Rozmiar> &Wek);
 

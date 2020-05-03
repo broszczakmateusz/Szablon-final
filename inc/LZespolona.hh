@@ -22,17 +22,10 @@ struct  LZespolona {
 
     LZespolona &  operator = ( double _re);
     LZespolona  operator * (double skl2);
-    /*  do konwersji przy wyznaczniku  det = tmp.tab[i][i] * det;*/
-    //double & operator = (LZespolona L);
-    LZespolona & operator = (LZespolona L);
+
+    /* Konstruktor kopiujacy nie dziala przy wczytaniu wektora, wiec uzyam tego przeciazenia*/
+    LZespolona & operator = (const LZespolona& L);
 };
-
-//LZespolona Utworz (double, double);
-//LZespolona Wczytaj (void);
-
-/*
-  Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
- */
 
 std::istream & operator >> (std::istream & Strm, LZespolona &);
 std::ostream & operator << (std::ostream & Strm, const LZespolona &out);
@@ -47,14 +40,13 @@ double  operator * (double skl1, LZespolona  Skl2);
 LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
 LZespolona  operator / (LZespolona  Skl1,  double skl2);
 
-bool operator == (LZespolona  L1,  LZespolona  L2);
-bool operator != (LZespolona  L1,  LZespolona  L2);
+bool operator == (const LZespolona&  L1,  LZespolona  L2);
+bool operator != (const LZespolona&  L1,  const LZespolona&  L2);
 
-bool operator == (LZespolona  L1,  double l2);
-bool operator != (LZespolona  L1,  double l2);
+bool operator == (const LZespolona&  L1,  double l2);
+bool operator != (const LZespolona&  L1,  double l2);
 
 LZespolona Sprzerzenie (LZespolona);
 double Modul2(LZespolona);
-
 
 #endif

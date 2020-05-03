@@ -1,12 +1,9 @@
 #include <iostream>
 #include "LZespolona.hh"
-
-
 /*!
  *  Wczytuje ze standardowego wejscia liczbe zespoloną
  * */
 std::istream & operator >> (std::istream & Strm, LZespolona &in) {
-
     char znak;
     Strm >> znak;
     if (znak != '(') {
@@ -28,31 +25,13 @@ std::istream & operator >> (std::istream & Strm, LZespolona &in) {
 /*!
  * Wyswietla liczbę zespolona na standardoe wyjscie w postaci (0+0i)
  */
-
 std::ostream & operator << (std::ostream & Strm, const LZespolona &out) {
 
   Strm << "(" << out.re << std::showpos << out.im << std::noshowpos << "i)";
     return Strm;
 }
-
-LZespolona & LZespolona::operator = (double _re) {
-    re = _re;
-    im = 0;
-    return *this;
-}
-
-/*double & LZespolona::operator=(LZespolona L) {
-    return L.re;
-}*/
-
-/* Konstruktor kopiujacy nie dziala przy wczytaniu wektora, wiec uzyam tego przeciazenia*/
-LZespolona & LZespolona::operator=(LZespolona L) {
-    re= L.re;
-    im = L.im;
-    return  *this;
-}
-
-
+/*****************************************************************/
+/* Konstruktory*/
 LZespolona::LZespolona() {
     re = 0;
     im = 0;
@@ -61,8 +40,6 @@ LZespolona::LZespolona(double _re) {
     re = _re;
     im = 0;
 }
-
-
 LZespolona::LZespolona(double _re, double _im) {
     re = _re;
     im = _im;
@@ -71,7 +48,20 @@ LZespolona::LZespolona(LZespolona const &L2) {
     re = L2.re;
     im = L2.im;
 }
+/*****************************************************************/
+LZespolona & LZespolona::operator = (double _re) {
+    re = _re;
+    im = 0;
+    return *this;
+}
 
+/* Konstruktor kopiujacy nie dziala przy wczytaniu wektora, wiec uzyam tego przeciazenia*/
+LZespolona & LZespolona::operator=(const LZespolona& L) {
+    re= L.re;
+    im = L.im;
+    return  *this;
+}
+/*****************************************************************/
 /*!
  * Realizuje dodanie dwoch liczb zespolonych.
  * Argumenty:
@@ -80,14 +70,14 @@ LZespolona::LZespolona(LZespolona const &L2) {
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
-{
-  LZespolona  Wynik;
 
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+LZespolona operator+(LZespolona Skl1, LZespolona Skl2) {
+    LZespolona  Wynik;
 
-  return Wynik;
+    Wynik.re = Skl1.re + Skl2.re;
+    Wynik.im = Skl1.im + Skl2.im;
+
+    return Wynik;
 }
 
 /*!
@@ -107,7 +97,6 @@ LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2)
 
     return Wynik;
 }
-
 /*!
  * Realizuje mnożenie dwoch liczb zespolonych.
  *
@@ -182,19 +171,19 @@ LZespolona  operator / (LZespolona  Skl1,  double skl2) {
     }
 }
 
-bool operator == (LZespolona  L1,  LZespolona  L2) {
+bool operator == (const LZespolona&  L1,  LZespolona  L2) {
     return (L1.re == L2.re) && (L1.im == L2.im);
 }
 
-bool operator != (LZespolona  L1,  LZespolona  L2) {
+bool operator != (const LZespolona&  L1,  const LZespolona&  L2) {
     return !(L1 == L2);
 }
 
-bool operator == (LZespolona  L1,  double l2) {
+bool operator == (const LZespolona&  L1,  double l2) {
     return (L1.re == l2) && (L1.im == l2);
 }
 
-bool operator != (LZespolona  L1,  double l2) {
+bool operator != (const LZespolona&  L1,  double l2) {
     return !(L1 == l2);
 }
 
@@ -214,34 +203,4 @@ double Modul2(LZespolona Liczba)  {
 
     return modul2;
 }
-/*!
- * Tworzy liczbę zespoloną żłożoną z części rzeczywistej i części urojonej
- * Argumenty:
- *   re - część rzeczywista
- *   im - część urojona
- * Zwraca:
- *   Strukturę liczby zespolonej
- * */
-LZespolona Utworz (double re, double im) {
-    LZespolona Liczba;
-    Liczba.re = re;
-    Liczba.im = im;
 
-    return Liczba;
-}
-
-
-
-
-/*!
- *  Wczytuje dwie wartosci double ze standardowego wejscia i zwraca je jako liczbe zespoloną
- * */
-/*LZespolona Wczytaj() {
-
-    LZespolona Liczba;
-    double re, im;
-
-    std::cin >> re >> im;
-
-    return Utworz(re,im);
-}*/

@@ -5,9 +5,9 @@
 #include <SWektor.h>
 #include <SMacierz.h>
 
-/* KLasa modeluje pojecie ukladu rownan, sklada sie z:
- *  - macierzy kwadratowej wspolczynnikow stojacych przy x_n
- *  - wektora wyrazow wolnych
+/* KLasa modeluje pojecie szablonu dla ukladu rownan liczb rzeczywistych lub zespolonych, sklada sie z:
+ *  - szablonu macierzy kwadratowej wspolczynnikow stojacych przy x_n
+ *  - szablonu wektora wyrazow wolnych
  */
 template <class TYP, int Rozmiar>
 class SUklad {
